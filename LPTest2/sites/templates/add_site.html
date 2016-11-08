@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Add Site - LivePerson Test Sites</title>
+{% endblock %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <div style="text-decoration: underline">Add site</div>
+            {% for field in form %}
+                <div>
+                {% if field.name == "id" or field.name == "lob" %}
+                    {{ field.name|upper }} {{field}}
+                {% else %}
+                    {{ field.name|title }} {{field}}
+                {% endif %}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Save"/>
+        </div>
+    </form>
+{% endblock%}
