@@ -93,6 +93,16 @@ section a{
     color: whitesmoke;
 }
 
+.add_site_link {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.add_site_link a{
+    color: whitesmoke;
+}
+
 footer{
     margin-top: 30px;
     font-size:18px;

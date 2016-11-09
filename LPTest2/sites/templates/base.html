@@ -2,51 +2,52 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'styles.css' %}"/>
-    {% block javascript %}
-    {% endblock %}
-    {% block title %}
-    {% endblock %}
-</head>
-<body>
-<header>
-    <h1>LivePerson Test Sites</h1>
-</header>
-<nav>
-    <div class="dropdown">
-        <button class="dropbtn" onclick="location.href='/'">HOME</button>
-    </div>
-    {% for lob in lobs %}
-    <div class="dropdown">
-        <button class="dropbtn">{{ lob.name }}</button>
-        <div class="dropdown-content">
-            {% for site in sites %}
-            {% ifequal site.lob lob %}
-            <a href="{% url 'sites:site' lob.name site.id %}">{{ site.id }} ({{ site.version}}) {{ site.comments }}</a>
-            {% endifequal %}
-            {% endfor %}
-        </div>
-    </div>
-    {% endfor %}
-</nav>
-
-<section>
-    <p>
-        {% if date %}
-            {{ date }}<br/><br/>
-        {% endif %}
-        {% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'styles.css' %}"/>
+        {% block javascript %}
         {% endblock %}
+        {% block title %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <h1>LivePerson Test Sites</h1>
+        </header>
+        <nav>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="location.href='/'">HOME</button>
+            </div>
+            {% for lob in lobs %}
+            <div class="dropdown">
+                <button class="dropbtn">{{ lob.name }}</button>
+                <div class="dropdown-content">
+                    {% for site in sites %}
+                    {% ifequal site.lob lob %}
+                    <a href="{% url 'sites:site' lob.name site.id %}">{{ site.id }} ({{ site.version}}) {{ site.comments }}</a>
+                    {% endifequal %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </nav>
+        <section>
+            <p>
+                {% if date %}
+                    {{ date }}<br/><br/>
+                {% endif %}
+                {% block content %}
+                {% endblock %}
+            </p>
+        </section>
         {% if show_add_site %}
-        <a href="/add_site" style="text-align: center; font-weight: bold">Add Site</a>
+        <div class="add_site_link">
+            <a href="/add_site">Add Site</a>
+        </div>
         {% endif %}
-    </p>
-</section>
-<footer>
-    ---------------------------------------------------------------------
-    <div id="copyright">&copy; 2016 Moshe Shitrit. All rights reserved.</div>
-</footer>
-</body>
+        <footer>
+            ---------------------------------------------------------------------
+            <div id="copyright">&copy; 2016 Moshe Shitrit. All rights reserved.</div>
+        </footer>
+    </body>
 </html>
